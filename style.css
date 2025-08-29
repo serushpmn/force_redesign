@@ -270,6 +270,12 @@ html[data-theme="dark"] .theme-toggle .moon {
   transform: scale(1);
 }
 
+/* Allow pointer dragging without browser default gestures */
+.hero__slides,
+.slides {
+  touch-action: pan-y;
+}
+
 /* اورلی گرادیانی نارنجی (شبیه تصویر) */
 .hero__slide .hero__overlay {
   position: absolute;
@@ -278,7 +284,6 @@ html[data-theme="dark"] .theme-toggle .moon {
   opacity: 0.92;
   mix-blend-mode: multiply; /* عمق بهتر روی تصویر */
 }
-
 /* کارت آمار شیشه‌ای */
 .hero__stats {
   position: absolute;
@@ -417,4 +422,216 @@ html[data-theme="dark"] .theme-toggle .moon {
   .hero__dots button.is-active {
     width: 12px;
   }
+}
+
+/* Kasbokar Style */
+/* عنوان و خط تزئینی */
+.biz-areas {
+  padding: 28px 0 42px 0;
+}
+.biz-areas__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: flex-start;
+}
+.biz-areas__head h2 {
+  font-size: var(--h5);
+  font-weight: var(--bold);
+  color: var(--black-800);
+  margin: 0;
+}
+.head-accent {
+  width: 80px;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--orange-500);
+  display: inline-block;
+}
+
+/* کانتینر ریل + نقاط */
+.rail-wrap {
+  /* پدینگ افقی برای تنفس و محاسبهٔ اندازهٔ دایره‌ها */
+  --pad-x: clamp(8px, 0vw, 64px);
+  --gap: clamp(6px, 1.2vw, 24px); /* فاصله بین آیتم‌ها */
+  position: relative;
+  padding-inline: var(--pad-x);
+  /* ارتفاع اتومات: با قرار دادن caption مطلق نیازی به height ثابت نیست */
+  margin-top: 6px;
+}
+
+/* مستطیلِ پشت دایره‌ها */
+.rail {
+  --rail-h: clamp(36px, 8vw, 80px);
+  position: absolute;
+  inset-inline: var(--pad-x);
+  top: 50%;
+  transform: translateY(-50%);
+  height: var(--rail-h);
+  border-radius: 2rem;
+  background: linear-gradient(90deg, var(--black-500), var(--orange-500));
+  box-shadow: var(--shadow-2xl);
+}
+
+/* ردیف ۶ ستونه ثابت (همیشه ۶ عدد دیده می‌شوند) */
+.nodes {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--gap);
+  position: relative; /* مرجع برای absolute های داخلی */
+}
+
+/* هر سلول */
+.node {
+  position: relative;
+  min-width: 0; /* از شکست شبکه جلوگیری می‌کند */
+  /* یک ارتفاع پایه برای محاسبهٔ جای caption */
+  --dot: clamp(56px, 12vw, 210px); /* اندازهٔ هدف دایره */
+  /* اگر عرض ستون از --dot کمتر شد، دایره به‌طور خودکار کوچک می‌شود */
+  height: calc(var(--dot) + 58px); /* فضای دایره + فاصله + کپشن */
+}
+
+/* دایره: دقیقاً وسطِ ریل */
+.node .dot {
+  position: absolute;
+  /* مرکز عمودی ریل */
+  top: calc(50% - (min(var(--dot), 100%) / 2));
+  /* مرکز افقی سلول */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--dot), 100%); /* از عرض ستون بزرگ‌تر نشود */
+  height: min(var(--dot), 100%);
+  border-radius: 50%;
+  background: var(--gradient-light);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12), var(--shadow-xl);
+}
+
+/* کپشن: همیشه زیر دایره با فاصله‌ی مشخص */
+.node .cap {
+  position: absolute;
+  top: calc(50% + (min(var(--dot), 100%) / 2) + 12px); /* فاصله زیر دایره */
+  inset-inline: 0;
+  margin: 0;
+  text-align: center;
+  font-weight: var(--bold);
+  color: var(--black-700);
+  line-height: 1.5;
+  font-size: clamp(0.72rem, 1.6vw, 1.05rem);
+  /* کمی سایه خیلی لطیف برای وضوح روی پس‌زمینه */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* برای نزدیک‌تر شدن به طرح، آخرین دایره سایه عمقی‌تری داشته باشد */
+.node:last-child .dot {
+  box-shadow: 0 24px 34px rgba(0, 0, 0, 0.14), var(--shadow-xl);
+}
+
+/* میدیا: فقط کمی جمع‌وجورتر—ولی همچنان ۶ ستون حفظ می‌شود */
+@media (max-width: 720px) {
+  .rail {
+    --rail-h: clamp(28px, 7vw, 90px);
+  }
+  .node {
+    --dot: clamp(44px, 11vw, 160px);
+    height: calc(var(--dot) + 50px);
+  }
+  .node .cap {
+    font-size: clamp(0.64rem, 1.8vw, 0.92rem);
+  }
+}
+@media (max-width: 420px) {
+  .rail {
+    --rail-h: clamp(22px, 6vw, 72px);
+  }
+  .node {
+    --dot: clamp(36px, 10.5vw, 120px);
+    height: calc(var(--dot) + 46px);
+  }
+  .node .cap {
+    font-size: clamp(0.6rem, 2.2vw, 0.85rem);
+  }
+}
+
+/* Trust Slider */
+.trust-slider {
+  padding: 2rem 1rem;
+  background: var(--orange-50); /* پس‌زمینه مطابق عکس */
+  text-align: center;
+}
+
+/* تیتر */
+.trust-title {
+  font-weight: var(--bold);
+  font-size: var(--h6);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.trust-title .accent {
+  display: inline-block;
+  width: 70px;
+  height: 4px;
+  background: var(--orange-500);
+  border-radius: 3px;
+}
+
+/* رپ اسلایدر */
+.slider-wrap {
+  position: relative;
+  background: var(--gray-50);
+  border-radius: 16px;
+  box-shadow: var(--shadow-xl);
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+/* اسلایدها */
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+.slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+.circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* متن زیر اسلایدر */
+.trust-desc {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 1.5rem;
+  text-align: right;
+}
+.trust-desc-text {
+  padding-right: 8px;
+  border-right: 3px solid var(--orange-400);
+}
+.trust-desc h3 {
+  font-weight: var(--bold);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  padding-right: 8px;
+}
+.trust-desc p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--black-700);
 }

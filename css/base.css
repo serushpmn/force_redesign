@@ -10,9 +10,12 @@ body {
   font-family: KalamehWebFaNum;
   margin: 0 auto;
   direction: rtl;
-  background: #f7f7f7;
+  background: var(--gray-50);
 }
-
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+}
 a {
   text-decoration: none;
   color: var(--black-500);
@@ -31,60 +34,8 @@ h4 {
   max-width: 1360px;
   margin: 0 auto;
 }
-.full-w {
-  width: 100%;
-  flex-grow: 1;
+.flex-start {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.container-content {
-  width: 90%;
-  margin: 0 auto;
-  z-index: 3;
-}
-.no-result {
-  width: 100%;
-  height: 300px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 30px;
-}
-/* Table styles might fit here as a base style */
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  direction: ltr;
-  margin: 20px auto;
-  border-collapse: collapse;
-  width: 80%;
-  text-align: center;
-  font-size: 18px;
-}
-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-table tr:first-child {
-  font-size: 20px;
-  font-weight: 700;
-}
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-table tr:hover {
-  background-color: #ddd;
-}
-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: right;
-  background-color: #04aa6d;
-  color: white;
-}
-.fa,
-.fa[class^="fa-"] {
-  font-family: FontAwesome !important;
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
+  justify-content: flex-start;
+  align-items: center;
 }

@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <title>Document</title>
   </head>
   <body>
@@ -108,54 +112,195 @@
     </header>
     <div class="mobile-overlay" id="overlay"></div>
     <main>
-      <!-- Hero Slider -->
-      <section class="hero" dir="rtl" aria-label="اسلایدر اصلی">
-        <div class="hero__slides" id="heroSlides">
-          <!-- هر اسلاید: در وردپرس این‌ها را با loop از پست‌ها/اسلایدر خودتان بسازید -->
-          <article
-            class="hero__slide is-active"
-            style="--bg: url('https://picsum.photos/id/1011/1920/900')">
-            <div class="hero__overlay"></div>
-          </article>
-          <article
-            class="hero__slide"
-            style="--bg: url('https://picsum.photos/id/1005/1920/900')">
-            <div class="hero__overlay"></div>
-          </article>
-          <article
-            class="hero__slide"
-            style="--bg: url('https://picsum.photos/id/1043/1920/900')">
-            <div class="hero__overlay"></div>
-          </article>
-        </div>
+      <div class="container">
+        <!-- Hero Slider -->
+        <section class="hero" dir="rtl" aria-label="اسلایدر اصلی">
+          <div class="hero__slides" id="heroSlides">
+            <!-- هر اسلاید: در وردپرس این‌ها را با loop از پست‌ها/اسلایدر خودتان بسازید -->
+            <article
+              class="hero__slide is-active"
+              style="--bg: url('https://picsum.photos/id/1011/1920/900')">
+              <div class="hero__overlay"></div>
+            </article>
+            <article
+              class="hero__slide"
+              style="--bg: url('https://picsum.photos/id/1005/1920/900')">
+              <div class="hero__overlay"></div>
+            </article>
+            <article
+              class="hero__slide"
+              style="--bg: url('https://picsum.photos/id/1043/1920/900')">
+              <div class="hero__overlay"></div>
+            </article>
+          </div>
 
-        <!-- کارت آمار (می‌توانید محتوایش را از ACF/Options بارگذاری کنید) -->
-        <div class="hero__stats">
-          <div class="stat">
-            <div class="stat__num">+۲۱۵۲</div>
-            <div class="stat__label">پروژه کل</div>
+          <!-- کارت آمار (می‌توانید محتوایش را از ACF/Options بارگذاری کنید) -->
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__num">+۲۱۵۲</div>
+              <div class="stat__label">پروژه کل</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">+۳۴۳۶</div>
+              <div class="stat__label">مشتریان راضی</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">+۳۵</div>
+              <div class="stat__label">پروژه در دست انجام</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">+۲۶</div>
+              <div class="stat__label">گواهینامه معتبر</div>
+            </div>
           </div>
-          <div class="stat">
-            <div class="stat__num">+۳۴۳۶</div>
-            <div class="stat__label">مشتریان راضی</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num">+۳۵</div>
-            <div class="stat__label">پروژه در دست انجام</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num">+۲۶</div>
-            <div class="stat__label">گواهینامه معتبر</div>
-          </div>
-        </div>
 
-        <!-- کنترل‌ها -->
-        <button class="hero__ctrl hero__ctrl--prev" aria-label="قبلی">‹</button>
-        <button class="hero__ctrl hero__ctrl--next" aria-label="بعدی">›</button>
-        <div class="hero__dots" id="heroDots" aria-hidden="true"></div>
-      </section>
+          <!-- کنترل‌ها -->
+          <button class="hero__ctrl hero__ctrl--prev" aria-label="قبلی">
+            ‹
+          </button>
+          <button class="hero__ctrl hero__ctrl--next" aria-label="بعدی">
+            ›
+          </button>
+          <div class="hero__dots" id="heroDots" aria-hidden="true"></div>
+        </section>
+        <!-- End of Hero Slider -->
+
+        <!-- Kasbokar Section -->
+        <section class="biz-areas" dir="rtl" aria-label="حوزه‌های کسب‌وکار">
+          <div class="biz-areas__head">
+            <span class="head-accent" aria-hidden="true"></span>
+            <h2>حوزه کسب و کار</h2>
+          </div>
+
+          <div class="rail-wrap">
+            <div class="rail"></div>
+
+            <ul class="nodes">
+              <li class="node">
+                <span class="dot"></span>
+                <p class="cap">دستگاه‌های<br />فیلتراسیون سوخت</p>
+              </li>
+              <li class="node">
+                <span class="dot"></span>
+                <p class="cap">دستگاه‌های<br />فیلتراسیون روغن</p>
+              </li>
+              <li class="node">
+                <span class="dot"></span>
+                <p class="cap">طراحی و اجرای خطوط<br />مینی پالایشگاه</p>
+              </li>
+              <li class="node">
+                <span class="dot"></span>
+                <p class="cap">تولیدات خط مینی<br />پالایشگاه</p>
+              </li>
+              <li class="node">
+                <span class="dot"></span>
+                <p class="cap">تجهیزات فرایندی<br />(پتروشیمی و پالایشی)</p>
+              </li>
+              <li class="node">
+                <span class="dot"></span>
+                <p class="cap">تجهیزات فرایندی<br />(پتروشیمی و پالایشی)</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section
+          class="trust-slider"
+          dir="rtl"
+          aria-label="همراهانی که به ما اعتماد کردند">
+          <div class="biz-areas__head">
+            <span class="head-accent" aria-hidden="true"></span>
+            <h2>همراهانی که به ما اعتماد کردند</h2>
+          </div>
+          <div class="slider-wrap">
+            <!-- Swiper -->
+            <div class="swiper trustSwiper">
+              <div class="swiper-wrapper">
+                <div
+                  class="swiper-slide"
+                  data-title="نام و نام خانوادگی ۱ – شرکت الف"
+                  data-desc="توضیحات مشتری اول. این متن می‌تواند از CMS بارگذاری شود.">
+                  <div class="slide">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="trust-desc">
+                    <div class="circle trust-desc-circle"></div>
+                    <div class="trust-desc-text">
+                      <h3>نام و نام خانوادگی – نام کمپانی</h3>
+                      <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                        چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون
+                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="swiper-slide"
+                  data-title="نام و نام خانوادگی ۱ – شرکت الف"
+                  data-desc="توضیحات مشتری اول. این متن می‌تواند از CMS بارگذاری شود.">
+                  <div class="slide">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="trust-desc">
+                    <div class="circle trust-desc-circle"></div>
+                    <div class="trust-desc-text">
+                      <h3>نام و نام خانوادگی – نام کمپانی</h3>
+                      <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                        چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون
+                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="swiper-slide"
+                  data-title="نام و نام خانوادگی ۱ – شرکت الف"
+                  data-desc="توضیحات مشتری اول. این متن می‌تواند از CMS بارگذاری شود.">
+                  <div class="slide">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                  <div class="trust-desc">
+                    <div class="circle trust-desc-circle"></div>
+                    <div class="trust-desc-text">
+                      <h3>نام و نام خانوادگی – نام کمپانی</h3>
+                      <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                        چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون
+                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- If we need pagination -->
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <!-- توضیحات زیر اسلایدر -->
+        </section>
+      </div>
     </main>
     <footer></footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+      defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>

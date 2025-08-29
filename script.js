@@ -8,18 +8,21 @@ const themeBtn = document.getElementById("themeToggle");
 const prefersDark =
   window.matchMedia &&
   window.matchMedia("(prefers-color-scheme: dark)").matches;
-const savedTheme = localStorage.getItem("theme");
+
 function applyTheme(theme) {
-  const html = document.documentElement;
   if (theme === "dark") {
-    html.setAttribute("data-theme", "dark");
-    themeBtn?.setAttribute("aria-pressed", "true");
+    document.documentElement.setAttribute("data-theme", "dark");
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", "true");
   } else {
-    html.removeAttribute("data-theme");
-    themeBtn?.setAttribute("aria-pressed", "false");
+    document.documentElement.removeAttribute("data-theme");
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", "false");
   }
 }
-applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+// initialize theme from localStorage or prefers-color-scheme
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) applyTheme(savedTheme);
+else applyTheme(prefersDark ? "dark" : "light");
 
 themeBtn?.addEventListener("click", () => {
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
@@ -28,39 +31,32 @@ themeBtn?.addEventListener("click", () => {
   localStorage.setItem("theme", next);
 });
 
+// Mobile nav open/close
 function openMenu() {
-  nav.classList.remove("closing");
+  if (!nav) return;
   nav.classList.add("open");
-  overlay.classList.add("show");
-  btn.classList.add("active");
-  btn.setAttribute("aria-expanded", "true");
-  document.body.style.overflow = "hidden";
-  // attach outside click handler after current event loop to avoid immediate trigger
-  setTimeout(() => {
-    document.addEventListener("click", outsideClickHandler);
-  }, 0);
+  overlay && overlay.classList.add("show");
+  btn && btn.classList.add("active");
+  btn && btn.setAttribute("aria-expanded", "true");
+  // attach outside click handler after current call stack to avoid immediate close
+  setTimeout(() => document.addEventListener("click", outsideClickHandler), 0);
 }
 
 function closeMenu() {
-  nav.classList.remove("open");
+  if (!nav) return;
   nav.classList.add("closing");
-  overlay.classList.remove("show");
-  btn.classList.remove("active");
-  btn.setAttribute("aria-expanded", "false");
-  document.body.style.overflow = "";
-  setTimeout(() => {
-    nav.classList.remove("closing");
-  }, 350);
-  // remove outside click handler when menu closes
+  nav.classList.remove("open");
+  overlay && overlay.classList.remove("show");
+  btn && btn.classList.remove("active");
+  btn && btn.setAttribute("aria-expanded", "false");
   document.removeEventListener("click", outsideClickHandler);
+  setTimeout(() => nav.classList.remove("closing"), 350);
 }
 
-btn.addEventListener("click", () => {
-  if (nav.classList.contains("open")) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
+btn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (nav.classList.contains("open")) closeMenu();
+  else openMenu();
 });
 
 overlay.addEventListener("click", (e) => {
@@ -151,18 +147,102 @@ navList.addEventListener("click", (e) => {
   });
 
   // سوایپ موبایل
-  let x0 = null;
-  root.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), {
-    passive: true,
-  });
-  root.addEventListener("touchend", (e) => {
-    if (x0 === null) return;
-    const dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 40) dx > 0 ? prev() : next();
-    x0 = null;
-  });
+  // pointer drag (mouse + touch) support
+  (function enableDrag(el, onPrev, onNext) {
+    let startX = null;
+    let dragging = false;
+    let pointerId = null;
+    const THRESH = 40;
+
+    el.addEventListener(
+      "pointerdown",
+      (ev) => {
+        // only primary button
+        if (ev.pointerType === "mouse" && ev.button !== 0) return;
+        startX = ev.clientX;
+        dragging = true;
+        pointerId = ev.pointerId;
+        el.setPointerCapture && el.setPointerCapture(pointerId);
+      },
+      { passive: true }
+    );
+
+    el.addEventListener(
+      "pointermove",
+      (ev) => {
+        if (!dragging || startX === null) return;
+        // optional: could implement drag preview
+      },
+      { passive: true }
+    );
+
+    function end(ev) {
+      if (!dragging) return;
+      const endX =
+        ev.clientX !== undefined
+          ? ev.clientX
+          : ev.changedTouches &&
+            ev.changedTouches[0] &&
+            ev.changedTouches[0].clientX;
+      const dx = endX - startX;
+      if (Math.abs(dx) > THRESH) {
+        dx > 0 ? onPrev() : onNext();
+      }
+      dragging = false;
+      startX = null;
+      try {
+        el.releasePointerCapture && el.releasePointerCapture(pointerId);
+      } catch (e) {}
+      pointerId = null;
+    }
+
+    el.addEventListener("pointerup", end);
+    el.addEventListener("pointercancel", end);
+  })(root, prev, next);
 
   // init
   render();
   start();
+})();
+
+// Trust slider is now handled by Swiper instance initialized earlier in this file.
+
+(function initTrustSwiper() {
+  if (typeof Swiper === "undefined") return; // Swiper not loaded yet
+  const el = document.querySelector(".trustSwiper");
+  if (!el) return;
+
+  const trustSwiper = new Swiper(el, {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: el.querySelector(".swiper-pagination"),
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: el.querySelector(".swiper-button-next"),
+      prevEl: el.querySelector(".swiper-button-prev"),
+    },
+  });
+
+  const trustDesc = document.querySelector(".trust-desc");
+  const trustTitleEl = trustDesc ? trustDesc.querySelector("h3") : null;
+  const trustTextEl = trustDesc ? trustDesc.querySelector("p") : null;
+
+  function updateDesc(swiper) {
+    const idx = swiper.realIndex % swiper.slides.length;
+    const slide =
+      swiper.slides[swiper.realIndex + (swiper.loopedSlides || 0)] ||
+      swiper.slides[swiper.realIndex];
+    const title = slide?.dataset?.title || `نام و نام خانوادگی – شرکت`;
+    const desc = slide?.dataset?.desc || `توضیحات مشتری`;
+    if (trustTitleEl) trustTitleEl.textContent = title;
+    if (trustTextEl) trustTextEl.textContent = desc;
+  }
+
+  trustSwiper.on("init", () => updateDesc(trustSwiper));
+  trustSwiper.on("slideChange", () => updateDesc(trustSwiper));
+  trustSwiper.init();
 })();
