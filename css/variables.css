@@ -1,0 +1,132 @@
+:root {
+  /* Gradient pallete:  */
+  --gradient-dark: linear-gradient(91deg, #363636 0%, #fe590f 100%);
+  --gradient-light: linear-gradient(250deg, #ffccb5 0%, #fe590f 80.02%);
+  --gradient-complementary: linear-gradient(270deg, #3f5efb 0%, #fe590f 90.96%);
+  --gradient-glassmorphic: linear-gradient(
+    135deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  --gradient-glassmorphic-orange: linear-gradient(
+    235deg,
+    #fe590fad 0%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+
+  /* Color pallete:  */
+  --orange-50: #ffeee7;
+  --orange-100: #ffccb5;
+  --orange-200: #ffb391;
+  --orange-300: #fe905e;
+  --orange-400: #fe7a3f;
+  --orange-500: #fe590f;
+  --orange-600: #e7510e;
+  --orange-700: #b43f0b;
+  --orange-800: #8c3108;
+  --orange-900: #6b2506;
+
+  --black-50: #ebebeb;
+  --black-100: #c1c1c1;
+  --black-200: #a3a3a3;
+  --black-300: #787878;
+  --black-400: #5e5e5e;
+  --black-500: #363636;
+  --black-600: #313131;
+  --black-700: #262626;
+  --black-800: #1e1e1e;
+  --black-900: #171717;
+
+  --gray-50: #f7f7f6;
+  --gray-100: #e7e6e4;
+  --gray-200: #dbd9d7;
+  --gray-300: #cbc8c5;
+  --gray-400: #c1bdba;
+  --gray-500: #b1ada9;
+  --gray-600: #a19d9a;
+  --gray-700: #7e7b78;
+  --gray-800: #615f5d;
+  --gray-900: #4a4947;
+
+  /* Box Shadows: */
+  --shadow-xs: 0px 4px 12px 0px rgba(57, 80, 107, 0.15);
+  --shadow-l: 2px 2px 15px 0px rgba(57, 80, 107, 0.15);
+  --shadow-xl: 0px 4px 12px 0px rgba(57, 80, 107, 0.15);
+  --shadow-2xl: 0px 6px 30px 0px rgba(57, 80, 107, 0.2);
+
+  /* font sizes:  */
+  --h1: 5rem;
+  --h2: 3.75rem;
+  --h3: 2.5rem;
+  --h4: 1.875rem;
+  --h5: 1.5rem;
+  --h6: 1.25rem;
+
+  /* font weights:  */
+  --bold: 700;
+  --semi_bold: 500;
+  --normal: 400;
+  --thin: 200;
+}
+
+/* Dark Mode  */
+/* -----------------------------------
+----------------------------------- */
+:root[data-theme="dark"] {
+  /* Gradients */
+  --gradient-dark: linear-gradient(91deg, #171717 0%, #fe590f 100%);
+  --gradient-light: linear-gradient(250deg, #363636 0%, #fe590f 80.02%);
+  --gradient-complementary: linear-gradient(270deg, #1e3a8a 0%, #fe590f 90.96%);
+  --gradient-glassmorphic: linear-gradient(
+    135deg,
+    rgba(30, 30, 30, 0.9) 0%,
+    rgba(54, 54, 54, 0.7) 100%
+  );
+  --gradient-glassmorphic-orange: linear-gradient(
+    235deg,
+    rgba(254, 89, 15, 0.6) 0%,
+    rgba(30, 30, 30, 0.8) 100%
+  );
+
+  /* Oranges (کمی اشباع‌تر برای نمایش روی پس‌زمینه تیره) */
+  --orange-50: #2b1b14;
+  --orange-100: #3b2115;
+  --orange-200: #5c2a16;
+  --orange-300: #7a3217;
+  --orange-400: #a7401a;
+  --orange-500: #fe590f; /* رنگ برند ثابت */
+  --orange-600: #ff6f2e;
+  --orange-700: #ff824c;
+  --orange-800: #ffa372;
+  --orange-900: #ffccb5;
+
+  /* Blacks → معکوس می‌شوند (متن روشن‌تر) */
+  --black-50: #171717;
+  --black-100: #1e1e1e;
+  --black-200: #262626;
+  --black-300: #313131;
+  --black-400: #363636;
+  --black-500: #5e5e5e;
+  --black-600: #787878;
+  --black-700: #a3a3a3;
+  --black-800: #c1c1c1;
+  --black-900: #ebebeb;
+
+  /* Grays → برعکس/تیره‌تر */
+  --gray-50: #1e1e1e;
+  --gray-100: #2a2a29;
+  --gray-200: #363634;
+  --gray-300: #444341;
+  --gray-400: #555350;
+  --gray-500: #6b6864;
+  --gray-600: #7e7b78;
+  --gray-700: #a19d9a;
+  --gray-800: #c1bdba;
+  --gray-900: #e7e6e4;
+
+  /* Shadows (روشن‌تر/شفاف‌تر برای دارک‌مود) */
+  --shadow-xs: 0px 4px 12px 0px rgba(0, 0, 0, 0.6);
+  --shadow-l: 2px 2px 15px 0px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0px 4px 12px 0px rgba(0, 0, 0, 0.65);
+  --shadow-2xl: 0px 6px 30px 0px rgba(0, 0, 0, 0.7);
+}

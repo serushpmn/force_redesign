@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="navbar" role="banner">
+      <div class="nav-wrap">
+        <!-- Right: Logo -->
+        <a class="logo" href="#" aria-label="Force Home">
+          <img src="img/logo 1.png" alt="FORCE logo" />
+        </a>
+
+        <!-- Center: Menu -->
+        <nav class="primary" id="primaryNav" aria-label="منوی اصلی">
+          <ul class="nav-list">
+            <li><a class="pill" href="#">صفحه اصلی</a></li>
+            <li><a class="pill" href="#">حوزه‌های کسب و کار</a></li>
+            <li><a class="pill" href="#">کاتالوگ محصولات</a></li>
+            <li><a class="pill" href="#">گالری</a></li>
+            <li><a class="pill" href="#">درباره ما</a></li>
+            <li><a class="pill" href="#">تماس با ما</a></li>
+          </ul>
+        </nav>
+
+        <!-- Left: Lang + Hamburger -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: end;
+          ">
+          <div class="lang-switch" aria-label="تغییر زبان">
+            <a href="#">English</a><span class="sep">/</span
+            ><a href="#" aria-current="page">فارسی</a>
+          </div>
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="تغییر تم"
+            aria-pressed="false"
+            title="تغییر حالت روشن/تاریک">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <!-- Sun -->
+              <g
+                class="sun"
+                stroke="#FE590F"
+                stroke-width="1.6"
+                stroke-linecap="round">
+                <circle cx="12" cy="12" r="3.5" fill="none" />
+                <path
+                  d="M12 2.5v2.2M12 19.3v2.2M4.7 4.7l1.6 1.6M17.7 17.7l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.7 19.3l1.6-1.6M17.7 6.3l1.6-1.6" />
+              </g>
+              <!-- Moon -->
+              <path
+                class="moon"
+                d="M15.5 3.5c.2.7.3 1.3.3 2 0 4.7-3.8 8.5-8.5 8.5-1 0-2-.2-2.9-.5A8.5 8.5 0 0012 21.5c4.7 0 8.5-3.8 8.5-8.5 0-4-2.8-7.3-6.5-8.5z"
+                fill="#FE590F" />
+            </svg>
+          </button>
+          <button
+            class="hamburger"
+            id="navToggle"
+            aria-label="باز کردن منو"
+            aria-controls="primaryNav"
+            aria-expanded="false">
+            <span class="icon-lines">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect
+                  class="line top"
+                  x="6"
+                  y="10"
+                  width="20"
+                  height="2.5"
+                  rx="1.25"
+                  fill="#FF6600" />
+                <rect
+                  class="line mid"
+                  x="6"
+                  y="15"
+                  width="20"
+                  height="2.5"
+                  rx="1.25"
+                  fill="#FF6600" />
+                <rect
+                  class="line bot"
+                  x="6"
+                  y="20"
+                  width="20"
+                  height="2.5"
+                  rx="1.25"
+                  fill="#FF6600" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="mobile-overlay" id="overlay"></div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
