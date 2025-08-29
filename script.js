@@ -37,7 +37,7 @@ function openMenu() {
   document.body.style.overflow = "hidden";
   // attach outside click handler after current event loop to avoid immediate trigger
   setTimeout(() => {
-    document.addEventListener('click', outsideClickHandler);
+    document.addEventListener("click", outsideClickHandler);
   }, 0);
 }
 
@@ -52,7 +52,7 @@ function closeMenu() {
     nav.classList.remove("closing");
   }, 350);
   // remove outside click handler when menu closes
-  document.removeEventListener('click', outsideClickHandler);
+  document.removeEventListener("click", outsideClickHandler);
 }
 
 btn.addEventListener("click", () => {
@@ -68,13 +68,13 @@ overlay.addEventListener("click", (e) => {
 });
 
 // Close menu when clicking anywhere outside nav / toggle (useful when overlay doesn't cover header)
-function outsideClickHandler(e){
+function outsideClickHandler(e) {
   // ignore clicks inside nav, on the toggle button, or on the theme button
   if (nav.contains(e.target)) return;
   if (btn.contains(e.target)) return;
   if (themeBtn && themeBtn.contains(e.target)) return;
   // if menu is open, close it
-  if (nav.classList.contains('open')) closeMenu();
+  if (nav.classList.contains("open")) closeMenu();
 }
 
 // Close menu when clicking outside nav (on overlay), but not when clicking inside nav
@@ -88,3 +88,81 @@ navList.addEventListener("click", (e) => {
     closeMenu();
   }
 });
+
+//Hero Section
+(() => {
+  const root = document.querySelector(".hero");
+  const slides = Array.from(root.querySelectorAll(".hero__slide"));
+  const prevBtn = root.querySelector(".hero__ctrl--prev");
+  const nextBtn = root.querySelector(".hero__ctrl--next");
+  const dotsWrap = root.querySelector("#heroDots");
+
+  let i = 0,
+    timer = null,
+    hold = false;
+
+  // دات‌ها
+  slides.forEach((_, idx) => {
+    const b = document.createElement("button");
+    b.addEventListener("click", () => go(idx));
+    dotsWrap.appendChild(b);
+  });
+
+  function render() {
+    slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+    dotsWrap
+      .querySelectorAll("button")
+      .forEach((d, idx) => d.classList.toggle("is-active", idx === i));
+  }
+
+  function go(idx) {
+    i = (idx + slides.length) % slides.length;
+    render();
+    restart();
+  }
+  const next = () => go(i + 1);
+  const prev = () => go(i - 1);
+
+  function start() {
+    timer = setInterval(next, 6000);
+  }
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+  function restart() {
+    if (!hold) {
+      stop();
+      start();
+    }
+  }
+
+  // رویدادها
+  nextBtn?.addEventListener("click", next);
+  prevBtn?.addEventListener("click", prev);
+
+  root.addEventListener("mouseenter", () => {
+    hold = true;
+    stop();
+  });
+  root.addEventListener("mouseleave", () => {
+    hold = false;
+    start();
+  });
+
+  // سوایپ موبایل
+  let x0 = null;
+  root.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), {
+    passive: true,
+  });
+  root.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) dx > 0 ? prev() : next();
+    x0 = null;
+  });
+
+  // init
+  render();
+  start();
+})();

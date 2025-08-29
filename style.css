@@ -88,7 +88,7 @@ a.pill:active {
 .mobile-overlay {
   position: fixed;
   inset: 0;
-  background: var(--black-900);
+  background: #171717;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
@@ -234,5 +234,187 @@ html[data-theme="dark"] .theme-toggle .moon {
   a.pill {
     padding: 9px 14px;
     font-size: 14px;
+  }
+}
+
+/* main section */
+/* Hero Section */
+/* کانتینر */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(420px, 65vh, 720px);
+  overflow: hidden;
+  background: var(--black-800);
+}
+
+/* اسلایدها */
+.hero__slides {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+}
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.7s ease, transform 1.2s ease;
+}
+.hero__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* اورلی گرادیانی نارنجی (شبیه تصویر) */
+.hero__slide .hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-light);
+  opacity: 0.92;
+  mix-blend-mode: multiply; /* عمق بهتر روی تصویر */
+}
+
+/* کارت آمار شیشه‌ای */
+.hero__stats {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(16px, 7vh, 48px);
+  transform: translateX(-50%);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  padding: 22px 28px;
+  background: var(--gradient-glassmorphic);
+  border-radius: 18px;
+  box-shadow: var(--shadow-2xl);
+  width: min(94%, 1160px);
+  color: var(--black-800);
+  backdrop-filter: blur(9px);
+}
+.stat {
+  text-align: center;
+}
+.stat__num {
+  font-weight: var(--bold);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  color: var(--black-600);
+}
+.stat__label {
+  margin-top: 6px;
+  font-weight: var(--semi_bold);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--black-700);
+}
+
+/* کنترل‌ها */
+.hero__ctrl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: var(--orange-100);
+  color: var(--orange-700);
+  box-shadow: var(--shadow-xs);
+  font-size: 26px;
+  line-height: 0;
+}
+.hero__ctrl--prev {
+  right: clamp(8px, 2vw, 16px);
+}
+.hero__ctrl--next {
+  left: clamp(8px, 2vw, 16px);
+}
+.hero__ctrl:hover {
+  background: var(--orange-200);
+  color: var(--orange-800);
+}
+
+/* دات‌ها */
+.hero__dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(8px, 3vh, 20px);
+  display: flex;
+  gap: 8px;
+}
+.hero__dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--black-300);
+  opacity: 0.6;
+}
+.hero__dots button.is-active {
+  background: var(--orange-500);
+  opacity: 1;
+  width: 18px;
+}
+
+/* موبایل متوسط */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 360px;
+  }
+  .stat__num {
+    font-size: 1.2rem;
+  }
+  .stat__label {
+    font-size: 0.85rem;
+  }
+  .hero__stats {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 14px 18px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+}
+
+/* موبایل کوچک (مثلاً زیر 480px) */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 280px;
+  }
+
+  .hero__stats {
+    grid-template-columns: repeat(4, 1fr);
+    width: 90%;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .stat {
+    padding: 6px;
+  }
+  .stat__num {
+    font-size: 1rem;
+  }
+  .stat__label {
+    font-size: 0.75rem;
+  }
+
+  .hero__ctrl {
+    display: none;
+  } /* فلش‌ها حذف، فقط سوایپ */
+  .hero__dots {
+    gap: 4px;
+  }
+  .hero__dots button {
+    width: 6px;
+    height: 6px;
+  }
+  .hero__dots button.is-active {
+    width: 12px;
   }
 }

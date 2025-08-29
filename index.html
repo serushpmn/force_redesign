@@ -34,10 +34,6 @@
             gap: 10px;
             justify-self: end;
           ">
-          <div class="lang-switch" aria-label="تغییر زبان">
-            <a href="#">English</a><span class="sep">/</span
-            ><a href="#" aria-current="page">فارسی</a>
-          </div>
           <button
             id="themeToggle"
             class="theme-toggle"
@@ -111,6 +107,55 @@
       </div>
     </header>
     <div class="mobile-overlay" id="overlay"></div>
+    <main>
+      <!-- Hero Slider -->
+      <section class="hero" dir="rtl" aria-label="اسلایدر اصلی">
+        <div class="hero__slides" id="heroSlides">
+          <!-- هر اسلاید: در وردپرس این‌ها را با loop از پست‌ها/اسلایدر خودتان بسازید -->
+          <article
+            class="hero__slide is-active"
+            style="--bg: url('https://picsum.photos/id/1011/1920/900')">
+            <div class="hero__overlay"></div>
+          </article>
+          <article
+            class="hero__slide"
+            style="--bg: url('https://picsum.photos/id/1005/1920/900')">
+            <div class="hero__overlay"></div>
+          </article>
+          <article
+            class="hero__slide"
+            style="--bg: url('https://picsum.photos/id/1043/1920/900')">
+            <div class="hero__overlay"></div>
+          </article>
+        </div>
+
+        <!-- کارت آمار (می‌توانید محتوایش را از ACF/Options بارگذاری کنید) -->
+        <div class="hero__stats">
+          <div class="stat">
+            <div class="stat__num">+۲۱۵۲</div>
+            <div class="stat__label">پروژه کل</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">+۳۴۳۶</div>
+            <div class="stat__label">مشتریان راضی</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">+۳۵</div>
+            <div class="stat__label">پروژه در دست انجام</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">+۲۶</div>
+            <div class="stat__label">گواهینامه معتبر</div>
+          </div>
+        </div>
+
+        <!-- کنترل‌ها -->
+        <button class="hero__ctrl hero__ctrl--prev" aria-label="قبلی">‹</button>
+        <button class="hero__ctrl hero__ctrl--next" aria-label="بعدی">›</button>
+        <div class="hero__dots" id="heroDots" aria-hidden="true"></div>
+      </section>
+    </main>
+    <footer></footer>
     <script src="script.js" defer></script>
   </body>
 </html>
