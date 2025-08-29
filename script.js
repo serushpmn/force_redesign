@@ -35,6 +35,10 @@ function openMenu() {
   btn.classList.add("active");
   btn.setAttribute("aria-expanded", "true");
   document.body.style.overflow = "hidden";
+  // attach outside click handler after current event loop to avoid immediate trigger
+  setTimeout(() => {
+    document.addEventListener('click', outsideClickHandler);
+  }, 0);
 }
 
 function closeMenu() {
@@ -47,6 +51,8 @@ function closeMenu() {
   setTimeout(() => {
     nav.classList.remove("closing");
   }, 350);
+  // remove outside click handler when menu closes
+  document.removeEventListener('click', outsideClickHandler);
 }
 
 btn.addEventListener("click", () => {
@@ -60,6 +66,16 @@ btn.addEventListener("click", () => {
 overlay.addEventListener("click", (e) => {
   closeMenu();
 });
+
+// Close menu when clicking anywhere outside nav / toggle (useful when overlay doesn't cover header)
+function outsideClickHandler(e){
+  // ignore clicks inside nav, on the toggle button, or on the theme button
+  if (nav.contains(e.target)) return;
+  if (btn.contains(e.target)) return;
+  if (themeBtn && themeBtn.contains(e.target)) return;
+  // if menu is open, close it
+  if (nav.classList.contains('open')) closeMenu();
+}
 
 // Close menu when clicking outside nav (on overlay), but not when clicking inside nav
 nav.addEventListener("click", (e) => {
