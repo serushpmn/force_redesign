@@ -246,3 +246,29 @@ navList.addEventListener("click", (e) => {
   trustSwiper.on("slideChange", () => updateDesc(trustSwiper));
   trustSwiper.init();
 })();
+
+// Products slider
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".prodSwiper", {
+    direction: "horizontal",
+    rtl: true, // برای RTL
+    spaceBetween: 20,
+    speed: 500,
+    grabCursor: true,
+    navigation: {
+      nextEl: ".products .prod-nav.next",
+      prevEl: ".products .prod-nav.prev",
+    },
+    // اگر می‌خواهی حلقه‌ای باشد فعال کن:
+    // loop: true,
+
+    // تعداد کارت‌ها در هر عرض
+    breakpoints: {
+      0: { slidesPerView: 1.05, spaceBetween: 14 },
+      480: { slidesPerView: 1.6, spaceBetween: 16 },
+      640: { slidesPerView: 2.1, spaceBetween: 18 },
+      820: { slidesPerView: 3, spaceBetween: 20 },
+      1100: { slidesPerView: 4, spaceBetween: 22 },
+    },
+  });
+});
