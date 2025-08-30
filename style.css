@@ -430,6 +430,7 @@ html[data-theme="dark"] .theme-toggle .moon {
   padding: 28px 0 42px 0;
 }
 .biz-areas__head {
+  padding: 20px 0;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -557,7 +558,7 @@ html[data-theme="dark"] .theme-toggle .moon {
 
 /* Trust Slider */
 .trust-slider {
-  padding: 2rem 1rem;
+  padding: 0 2rem 2rem 2rem;
   background: var(--orange-50); /* پس‌زمینه مطابق عکس */
   text-align: center;
 }
@@ -638,7 +639,6 @@ html[data-theme="dark"] .theme-toggle .moon {
 
 /* Products in Home Page */
 .products {
-  padding: 24px 12px;
   background: var(--gray-50);
 }
 .products__head {
@@ -690,7 +690,7 @@ html[data-theme="dark"] .theme-toggle .moon {
 
 /* Product card */
 .product-card {
-  background: var (--white);
+  background: var(--white);
   border-radius: 18px;
   box-shadow: var(--shadow-xl);
   padding: 14px;
@@ -789,6 +789,7 @@ html[data-theme="dark"] .theme-toggle .moon {
 
 /* Swiper defaults */
 .prodSwiper .swiper-slide {
+  padding: 1rem;
   height: auto;
 } /* کارت ارتفاع اتومات داشته باشد */
 
@@ -796,7 +797,6 @@ html[data-theme="dark"] .theme-toggle .moon {
 /* سکشن و پس‌زمینه */
 .about {
   position: relative;
-  padding: clamp(18px, 4vw, 36px);
   background: var(--gray-50);
   overflow: hidden;
 }
@@ -824,6 +824,10 @@ html[data-theme="dark"] .theme-toggle .moon {
   background: var(--orange-500);
 }
 
+section.about {
+  background-image: url("img/about-us.jpg");
+}
+
 /* گرید اصلی */
 .about__grid {
   position: relative;
@@ -842,22 +846,25 @@ html[data-theme="dark"] .theme-toggle .moon {
   box-shadow: var(--shadow-2xl);
   opacity: 0.85;
 }
+.about__figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+}
 
 /* کارت شیشه‌ای سمت راست */
 .about__card {
-  background: var(--gradient-glassmorphic);
-  backdrop-filter: blur(9px);
-  border-radius: 22px;
-  box-shadow: var(--shadow-2xl);
   padding: clamp(16px, 3vw, 28px);
-  color: var(--black-800);
+  color: #1e1e1e;
   text-align: center;
+  font-weight: 600;
 }
 .about__card p {
   margin: 0;
   line-height: 2;
   font-size: clamp(0.9rem, 1.7vw, 1.05rem);
-  color: var(--black-700);
+  color: #1e1e1e;
 }
 
 /* دکمه‌ها */
@@ -995,6 +1002,7 @@ html[data-theme="dark"] .theme-toggle .moon {
 
 /* ریسپانسیو */
 .certSwiper .swiper-slide {
+  padding: 1rem;
   width: auto;
   max-width: 280px;
 }
@@ -1053,7 +1061,7 @@ html[data-theme="dark"] .theme-toggle .moon {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin: 18px 0;
 }
 .articles__head .title {
   display: flex;
@@ -1097,7 +1105,7 @@ html[data-theme="dark"] .theme-toggle .moon {
   flex-direction: column;
   background: var(--white);
   text-decoration: none;
-  border-radius: 0.25rem;
+  border-radius: 1.25rem;
   color: inherit;
 }
 .post-card:hover {
@@ -1194,6 +1202,7 @@ html[data-theme="dark"] .theme-toggle .moon {
 
 /* Swiper slide height auto برای کارت‌ها */
 .articlesSwiper .swiper-slide {
+  padding: 1rem;
   height: auto;
 }
 
@@ -1424,4 +1433,142 @@ html[data-theme="dark"] .theme-toggle .moon {
 :root[data-theme="dark"] .site-footer .ft-bottom {
   border-top-color: #1e1e1e; /* مقدار اصلی --black-600 */
   color: #e7e6e4; /* مقدار اصلی --gray-100 */
+}
+
+/* Responsive برای footer */
+
+/* تبلت (تا 768px) */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr; /* دو ستون: خبرنامه و مزیت‌ها در ردیف اول، لینک‌ها و تماس در ردیف دوم */
+    gap: 20px;
+  }
+
+  .ft-newsletter,
+  .ft-benefits {
+    grid-column: 1 / -1; /* هر کدام یک ردیف کامل بگیرند */
+  }
+
+  .ft-links,
+  .ft-contact {
+    grid-column: 1 / -1; /* هر کدام یک ردیف کامل بگیرند */
+  }
+
+  .site-footer {
+    padding: 20px 12px 10px;
+  }
+
+  .nl-form {
+    gap: 8px;
+  }
+
+  .nl-group input {
+    padding: 8px 10px 8px 56px; /* فضای دکمه کمتر */
+  }
+
+  .nl-btn {
+    height: 30px;
+    padding: 0 12px;
+  }
+
+  .ft-benefits {
+    grid-template-columns: 1fr; /* مزیت‌ها در موبایل یک ستون */
+    gap: 10px;
+  }
+
+  .benefit {
+    padding: 10px;
+  }
+
+  .socials {
+    gap: 8px;
+  }
+
+  .s-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* موبایل (تا 480px) */
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr; /* همه چیز یک ستون */
+    gap: 16px;
+  }
+
+  .ft-newsletter,
+  .ft-links,
+  .ft-benefits,
+  .ft-contact {
+    grid-column: 1; /* هر کدام یک ردیف کامل */
+  }
+
+  .site-footer {
+    padding: 16px 10px 8px;
+  }
+
+  .nl-title {
+    margin: 8px 2px 2px;
+    font-size: 14px;
+  }
+
+  .nl-group input {
+    font-size: 13px;
+    padding: 6px 8px 6px 48px;
+  }
+
+  .nl-btn {
+    height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .ft-head {
+    font-size: 14px;
+    margin: 0 0 8px;
+  }
+
+  .ft-links ul {
+    gap: 6px;
+  }
+
+  .ft-links a {
+    font-size: 13px;
+  }
+
+  .benefit {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .b-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .b-text {
+    font-size: 13px;
+  }
+
+  .addr {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .socials {
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .s-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ft-bottom {
+    margin: 12px auto 0;
+    padding-top: 8px;
+    font-size: 12px;
+  }
 }
