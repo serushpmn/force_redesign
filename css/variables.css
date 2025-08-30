@@ -48,6 +48,8 @@
   --gray-800: #615f5d;
   --gray-900: #4a4947;
 
+  --white: #ffffff;
+
   /* Box Shadows: */
   --shadow-xs: 0px 4px 12px 0px rgba(57, 80, 107, 0.15);
   --shadow-l: 2px 2px 15px 0px rgba(57, 80, 107, 0.15);
@@ -123,6 +125,8 @@
   --gray-700: #a19d9a;
   --gray-800: #c1bdba;
   --gray-900: #e7e6e4;
+
+  --white: #262626
 
   /* Shadows (روشن‌تر/شفاف‌تر برای دارک‌مود) */
   --shadow-xs: 0px 4px 12px 0px rgba(0, 0, 0, 0.6);

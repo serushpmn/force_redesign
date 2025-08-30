@@ -272,3 +272,43 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 });
+
+// Certificate Slider
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".certSwiper", {
+    slidesPerView: 1.2,
+    spaceBetween: 20,
+    rtl: true,
+    grabCursor: true,
+    navigation: {
+      nextEl: ".certificates .cert-nav.next",
+      prevEl: ".certificates .cert-nav.prev",
+    },
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 14 },
+      960: { slidesPerView: 3, spaceBetween: 18 },
+      1280: { slidesPerView: 5, spaceBetween: 22 },
+    },
+  });
+});
+
+//Articles Section
+
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".articlesSwiper", {
+    rtl: true,
+    speed: 500,
+    spaceBetween: 28,
+    grabCursor: true,
+    navigation: {
+      nextEl: ".articles .art-nav.next",
+      prevEl: ".articles .art-nav.prev",
+    },
+    breakpoints: {
+      0: { slidesPerView: 1.05, spaceBetween: 16 },
+      560: { slidesPerView: 2, spaceBetween: 22 },
+      900: { slidesPerView: 3, spaceBetween: 26 },
+      1240: { slidesPerView: 4, spaceBetween: 28 },
+    },
+  });
+});
